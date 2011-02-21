@@ -1,0 +1,277 @@
+/**
+ * jQuery gallerific lightBox plugin
+ * This jQuery plugin was inspired and based on the jQuery Gallerific plugin by Trent Foley, and the jQuery Lightbox plugin by Leandro Vieira Pinho, 
+ * which in turn was inspired by the original Lightbox 2 by Lokesh Dhakar (http://www.huddletogether.com/projects/lightbox2/)
+ * and adapted to me for use like a plugin from jQuery.
+ * @name gallerificLight.css
+ * @author Matt Gifford aka ColdFuMonkeh (http://www.mattgifford.co.uk/)
+ * @developed in conjunction with UGC Creative Ltd (http://www.ugccreative.com/)
+ * @original author of jquery lightbox plugin Leandro Vieira Pinho - http://leandrovieira.com
+ * @original author of jquery gallerific plugin Trent Foley - http://www.twospy.com
+ * @version 0.2
+ * @date October 12 2008
+ * @category jQuery plugin
+ * @license CC Attribution-Noncommercial-ShareAlike (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @example Visit http://www.mattgifford.co.uk/ for more informations about this jQuery plugin
+ */
+ 
+ 
+/* gallerfic styles */
+
+html, body {
+	margin:0;
+	padding:0;
+}
+body{
+	text-align: center;
+	font-family: Helvetica, Arial;
+	background-color: #ccc;
+	font-size: 0.85em;
+}
+div#page {
+	width: 900px;
+	background-color: #fff;
+	margin: 0 auto;
+	text-align: left;
+}
+div#container {
+	padding: 20px;
+}
+div#ads {
+	clear: both;
+	padding: 12px 0 12px 66px;
+}
+div#footer {
+	text-align: center;
+	clear: both;
+	padding-top: 12px;
+}
+a{
+	color: #666666;
+	text-decoration: none;
+}
+a:focus, a:hover, a:active {
+	color: #182E7A;
+	text-decoration: underline;
+}
+p, li {
+	line-height: 1.3em;
+}
+p a, li a {
+	text-decoration: underline;
+}
+h1, h2 {
+	margin: 0;
+}
+h1 {
+	color: #333;
+	padding: 0;
+}
+h2 {
+	color: #111;
+	padding-top: 10px;
+}
+div.content {
+	/* The display of content is enabled by a javascript generated style on the page.
+	   This is so that the slideshow content won't display unless javascript is enabled. */
+	display: none;
+	float:right;
+	width:550px; 
+}
+div.controls {
+	margin-top: 5px;
+	height: 23px;
+}
+div.ss-controls {
+	float: left;
+}
+div.ss-controls span {
+	color: #666666;
+	cursor: pointer;
+}
+div.nav-controls {
+	float: right;
+}
+div.nav-controls a {
+	padding: 5px;
+}
+div.slideshow {
+	clear: both;
+}
+div.slideshow span.image-wrapper {
+	float: left;
+	padding-bottom: 12px;
+}
+div.slideshow a.advance-link {
+	padding: 2px;
+	display: block;
+	border: 1px solid #ccc;
+}
+div.slideshow img {
+	border: none;
+	display: block;
+}
+div.download {
+	float: right;
+}
+div.embox {
+	clear: both;
+	border: 1px solid #ccc;
+	background-color: #eee;
+	padding: 12px;
+}
+div.image-title {
+	font-weight: bold;
+	font-size: 1.4em;
+}
+
+div.image-desc {
+	line-height: 1.3em;
+	padding-top: 12px;
+}
+div.navigation {
+	/* The navigation style is set by a javascript generated style on the page.
+	   This is so that the javascript specific styles won't be applied unless javascript is enabled. */
+}
+ul.thumbs {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+ul.thumbs li {
+	float: left;
+	padding: 0;
+	margin: 5px 10px 5px 0;
+	list-style: none;
+}
+ul.thumbs li a {
+	padding: 2px;
+	display: block;
+	border: 1px solid #ccc;
+}
+ul.thumbs li.selected a {
+	background: #88f;
+}
+ul.thumbs a:focus {
+	outline: none;
+}
+ul.thumbs img {
+	border: none;
+	display: block;
+}
+div.pagination {
+	clear: both;
+}
+div.navigation div.top {
+	margin-bottom: 12px;
+	height: 11px;
+}
+div.navigation div.bottom {
+	margin-top: 12px;
+}
+div.pagination a, div.pagination strong {
+	display: block;
+	float: left;
+	margin-right: 2px;
+	padding: 4px 7px 2px 7px;
+	border: 1px solid #ccc;
+}
+div.pagination a:hover {
+	background-color: #ffc;
+	text-decoration: none;
+}
+div.pagination strong {
+	background-color: #acf;
+}
+ 
+ 
+ /* jQuery specific overlay styles */
+ 
+ #jquery-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	width: 100%;
+	height: 500px;
+}
+#jquery-lightbox {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	text-align: center;
+	line-height: 0;
+}
+#jquery-lightbox a img { border: none; }
+#lightbox-container-image-box {
+	position: relative;
+	background-color: #fff;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+}
+#lightbox-container-image { padding: 10px; }
+#lightbox-loading {
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	height: 25%;
+	width: 100%;
+	text-align: center;
+	line-height: 0;
+}
+#lightbox-nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+}
+#lightbox-container-image-box > #lightbox-nav { left: 0; }
+#lightbox-nav a { outline: none;}
+#lightbox-nav-btnPrev, #lightbox-nav-btnNext {
+	width: 49%;
+	height: 100%;
+	zoom: 1;
+	display: block;
+}
+#lightbox-nav-btnPrev { 
+	left: 0; 
+	float: left;
+}
+#lightbox-nav-btnNext { 
+	right: 0; 
+	float: right;
+}
+#lightbox-container-image-data-box {
+	font: 10px Verdana, Helvetica, sans-serif;
+	background-color: #fff;
+	margin: 0 auto;
+	line-height: 1.4em;
+	overflow: auto;
+	width: 100%;
+	padding: 0 10px 0;
+}
+#lightbox-container-image-data {
+	padding: 0 10px; 
+	color: #666; 
+}
+#lightbox-container-image-data #lightbox-image-details { 
+	width: 70%; 
+	float: left; 
+	text-align: left; 
+}	
+#lightbox-image-details-caption { font-weight: bold; }
+#lightbox-image-details-currentNumber {
+	display: block; 
+	clear: left; 
+	padding-bottom: 1.0em;	
+}			
+#lightbox-secNav-btnClose {
+	width: 66px; 
+	float: right;
+	padding-bottom: 0.7em;	
+}

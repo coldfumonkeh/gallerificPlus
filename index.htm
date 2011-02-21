@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GallerificPlus - your jQuery gallery and lightbox</title>
+<!-- Matt Gifford (http://www.mattgifford.co.uk/) -->
+<link rel="stylesheet" href="css/gallerificPlus.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/gallerificPlus.js"></script>
+<script type="text/javascript">
+	document.write("<style type='text/css'>div.navigation{width:300px;float: left;}div.content{display:block;}</style>");
+</script>
+</head>
+<body>
+<!-- Start Gallery Html Containers -->
+<div id="gallery" class="content">
+    <div id="controls" class="controls"></div>
+    <div id="slideshow" class="slideshow"></div>
+    <div id="details" class="embox">
+        <div id="download" class="download"><a id="download-link">Download Original</a></div>
+        <div id="image-title" class="image-title"></div>
+        <div id="image-desc" class="image-desc"></div>
+    </div>
+</div>
+<div id="navigation" class="navigation">
+    <ul class="thumbs noscript">
+        <li><a href="http://farm1.static.flickr.com/100/253177978_7609879637_o_d.jpg" original="http://farm1.static.flickr.com/100/253177978_7609879637_o_d.jpg" title="There's a train a comin'" description="Description"><img src="http://farm1.static.flickr.com/100/253177978_7609879637_s.jpg" alt="There's a train a comin'" /></a></li>
+		<li><a href="http://farm1.static.flickr.com/112/253177973_0710df33a7_d.jpg" original="http://farm1.static.flickr.com/112/253177973_0710df33a7_d.jpg" title="P P P Pick Up A Penguin" description="Description"><img src="http://farm1.static.flickr.com/112/253177973_0710df33a7_s.jpg" alt="P P P Pick Up A Penguin" /></a></li>
+		<li><a href="http://farm1.static.flickr.com/90/253177962_4a0056155e_o_d.jpg" original="http://farm1.static.flickr.com/90/253177962_4a0056155e_o_d.jpg" title="Ban The Flag" description="Description"><img src="http://farm1.static.flickr.com/90/253177962_4a0056155e_s_d.jpg" alt="Ban The Flag" /></a></li>
+		<li><a href="http://farm1.static.flickr.com/103/253177996_4d56eb8a92_d.jpg" original="http://farm1.static.flickr.com/103/253177996_4d56eb8a92_d.jpg" title="Our Man Charlie" description="Description"><img src="http://farm1.static.flickr.com/103/253177996_4d56eb8a92_s_d.jpg" alt="Our Man Charlie" /></a></li>
+        <li><a href="http://farm4.static.flickr.com/3153/2538167690_c812461b7b.jpg" original="http://farm4.static.flickr.com/3153/2538167690_c812461b7b_b.jpg" title="Title #3" description="Description"><img src="http://farm4.static.flickr.com/3153/2538167690_c812461b7b_s.jpg" alt="Title #3" /></a></li>
+		<li><a href="http://farm4.static.flickr.com/3150/2538167224_0a6075dd18.jpg" original="http://farm4.static.flickr.com/3150/2538167224_0a6075dd18_b.jpg" title="Title #4" description="Description"><img src="http://farm4.static.flickr.com/3150/2538167224_0a6075dd18_s.jpg" alt="Title #4" /></a></li>
+		<li><a href="http://farm4.static.flickr.com/3204/2537348699_bfd38bd9fd.jpg" original="http://farm4.static.flickr.com/3204/2537348699_bfd38bd9fd_b.jpg" title="Title #5" description="Description"><img src="http://farm4.static.flickr.com/3204/2537348699_bfd38bd9fd_s.jpg" alt="Title #5" /></a></li>
+		<li><a href="http://farm4.static.flickr.com/3124/2538164582_b9d18f9d1b.jpg" original="http://farm4.static.flickr.com/3124/2538164582_b9d18f9d1b_b.jpg" title="Title #6" description="Description"><img src="http://farm4.static.flickr.com/3124/2538164582_b9d18f9d1b_s.jpg" alt="Title #6" /></a></li>
+		<li><a href="http://farm4.static.flickr.com/3205/2538164270_4369bbdd23.jpg" original="http://farm4.static.flickr.com/3205/2538164270_c7d1646ecf_o.jpg" title="Title #7" description="Description"><img src="http://farm4.static.flickr.com/3205/2538164270_4369bbdd23_s.jpg" alt="Title #7" /></a></li>
+		<li><a href="http://farm4.static.flickr.com/3211/2538163540_c2026243d2.jpg" original="http://farm4.static.flickr.com/3211/2538163540_c2026243d2_b.jpg" title="Title #8" description="Description"><img src="http://farm4.static.flickr.com/3211/2538163540_c2026243d2_s.jpg" alt="Title #8" /></a></li>
+		<li><a href="http://farm3.static.flickr.com/2315/2537343449_f933be8036.jpg" original="http://farm3.static.flickr.com/2315/2537343449_f933be8036_b.jpg" title="Title #9" description="Description"><img src="http://farm3.static.flickr.com/2315/2537343449_f933be8036_s.jpg" alt="Title #9" /></a></li>
+		<li><a href="http://farm3.static.flickr.com/2167/2082738157_436d1eb280.jpg" original="http://farm3.static.flickr.com/2167/2082738157_436d1eb280_b.jpg" title="Title #10" description="Description"><img src="http://farm3.static.flickr.com/2167/2082738157_436d1eb280_s.jpg" alt="Title #10" /></a></li>
+		<li><a href="http://farm3.static.flickr.com/2342/2083508720_fa906f685e.jpg" original="http://farm3.static.flickr.com/2342/2083508720_fa906f685e_b.jpg" title="Title #11" description="Description"><img src="http://farm3.static.flickr.com/2342/2083508720_fa906f685e_s.jpg" alt="Title #11" /></a></li>
+		<li><a href="http://farm3.static.flickr.com/2132/2082721339_4b06f6abba.jpg" original="http://farm3.static.flickr.com/2132/2082721339_4b06f6abba_b.jpg" title="Title #12" description="Description"><img src="http://farm3.static.flickr.com/2132/2082721339_4b06f6abba_s.jpg" alt="Title #12" /></a></li>
+		<li><a href="http://farm3.static.flickr.com/2139/2083503622_5b17f16a60.jpg" original="http://farm3.static.flickr.com/2139/2083503622_5b17f16a60_b.jpg" title="Title #13" description="Description"><img src="http://farm3.static.flickr.com/2139/2083503622_5b17f16a60_s.jpg" alt="Title #13" /></a></li>
+		<li><a href="http://farm3.static.flickr.com/2041/2083498578_114e117aab.jpg" original="http://farm3.static.flickr.com/2041/2083498578_114e117aab_b.jpg" title="Title #14" description="Description"><img src="http://farm3.static.flickr.com/2041/2083498578_114e117aab_s.jpg" alt="Title #14" /></a></li>
+    </ul>
+</div>
+<!-- End Gallery Html Containers -->
+                
+<script type="text/javascript">			
+$(document).ready(function() {
+	var gallery = $('#gallery').galleriffic('#navigation', {
+		delay:                2000,
+		numThumbs:            12,
+		imageContainerSel:    '#slideshow',
+		controlsContainerSel: '#controls',
+		titleContainerSel:    '#image-title',
+		descContainerSel:     '#image-desc',
+		downloadLinkSel:      '#download-link',
+		fixedNavigation:	   true,
+		galleryKeyboardNav:	   true,
+		autoPlay:			   false
+	});
+	
+	gallery.onFadeOut = function() {
+		$('#details').fadeOut('fast');
+	};
+	
+	gallery.onFadeIn = function() {
+		$('#details').fadeIn('fast');
+	};
+});
+</script>
+</body>
+</html>
