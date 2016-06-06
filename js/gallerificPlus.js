@@ -5,7 +5,7 @@
  * Licensed under the Creative Commons Attribution-Noncommercial-ShareAlike License
  * http://creativecommons.org/licenses/by-nc-sa/3.0/
  *
- * Thanks to Trent Foley (Gallerific plugin author - http://www.twospy.com) 
+ * Thanks to Trent Foley (Gallerific plugin author - http://www.twospy.com)
  * and Leandro Vieira Pinho (jQuery Lightbox plugin author - http://leandrovieira.com), whose amazing plugins I adapted and integrated to work together.
  * I wouldn't have had anything to work with if it wasn't for those guys, so thank you very VERY much.
  */
@@ -17,7 +17,7 @@
 	var ver = 'gallerifficPlus0.3';
 	var galleryOffset = 0;
 	var galleries = [];
-	var allImages = [];	
+	var allImages = [];
 	var historyCurrentHash;
 	var historyBackStack;
 	var historyForwardStack;
@@ -35,7 +35,7 @@
 
 	function registerGallery(gallery) {
 		galleries.push(gallery);
-		
+
 		// update the global offset value
 		galleryOffset += gallery.data.length;
 	}
@@ -48,7 +48,7 @@
 		}
 		return 0;
 	}
-	
+
 	function historyCallback() {
 		// Using present location.hash always (seems to work, unlike the hash argument passed to this callback)
 		var hash = getHash();
@@ -56,17 +56,17 @@
 
 		var gallery = getGallery(hash);
 		if (!gallery) return;
-		
+
 		var index = hash-gallery.offset;
 		gallery.goto(index);
 	}
-	
+
 	function historyInit() {
 		if (isInitialized) return;
-		isInitialized = true; 
+		isInitialized = true;
 
 		var current_hash = location.hash;
-		
+
 		historyCurrentHash = current_hash;
 		if ($.browser.msie) {
 			// To stop the callback firing twice during initilization if no hash present
@@ -83,19 +83,19 @@
 
 		setInterval(function() { historyCheck(); }, 100);
 	}
-	
+
 	function historyAddHistory(hash) {
 		// This makes the looping function do something
 		historyBackStack.push(hash);
 		historyForwardStack.length = 0; // clear forwardStack (true click occured)
 		isFirst = true;
 	}
-	
+
 	function historyCheck() {
 		if ($.browser.safari) {
 			if (!dontCheck) {
 				var historyDelta = history.length - historyBackStack.length;
-				
+
 				if (historyDelta) { // back or forward button has been pushed
 					isFirst = false;
 					if (historyDelta < 0) { // back button has been pushed
@@ -146,7 +146,7 @@
 		nextPageLinkText:     'Next &rsaquo;',
 		prevPageLinkText:     '&lsaquo; Prev',
 		autoPlay:			  true,
-		
+
 		// Configuration related to overlay
 		overlayBgColor: 		'#000',		// (string) Background color to overlay; inform a hexadecimal value like: #RRGGBB. Where RR, GG, and BB are the hexadecimal values for the red, green, and blue values of the color.
 		overlayOpacity:			0.8,		// (integer) Opacity value to overlay; inform: 0.X. Where X are number from 0 to 9
@@ -173,15 +173,15 @@
 		activeImage:			0,
 		// Allow keyboard navigation on gallery as well as lightbox?
 		galleryKeyboardNav:		true		// (boolean) Boolean that informs if the keyboard navigation will be used with the gallery (as it is used with the lightbox).
-		
+
 	};
-	
+
 	// lightbox specific functions
-	
+
 	function buildLightBox(image,gallery,current) {
-	
+
 		gallery.pause();
-		
+
 		// Hide some elements to avoid conflict with overlay in IE. These elements appear above the overlay.
 		$('embed, object, select').css({ 'visibility' : 'hidden' });
 		// Call the function to create the markup structure; style some elements; assign events in some elements.
@@ -190,13 +190,13 @@
 		defaults.imageArray.length = 0;
 		// Unset image active information
 		defaults.activeImage = 0;
-		
+
 		if ( gallery.data.length == 1 ) {
-			defaults.imageArray.push(new Array(gallery.data[current].original,gallery.data[current].title));
+			defaults.imageArray.push(new Array(gallery.data[current].original,gallery.data[current].title,gallery.data[current].description));
 		} else {
-			// Add an Array (as many as we have), with href and title atributes, inside the Array that storage the images references		
+			// Add an Array (as many as we have), with href and title atributes, inside the Array that storage the images references
 			for ( var i = 0; i < gallery.data.length; i++ ) {
-				defaults.imageArray.push(new Array(gallery.data[i].original,gallery.data[i].title));
+				defaults.imageArray.push(new Array(gallery.data[i].original,gallery.data[i].title,gallery.data[i].description));
 			}
 		}
 		while ( defaults.imageArray[defaults.activeImage][0] != gallery.data[current].original ) {
@@ -205,7 +205,7 @@
 		// Call the function that prepares image exibition
 		_set_image_to_view();
 	}
-	
+
 	/**
 	 * Create the jQuery lightBox plugin interface
 	 *
@@ -244,7 +244,7 @@
 	 */
 	function _set_interface() {
 		// Apply the HTML markup into body tag
-		$('body').append('<div id="jquery-overlay"></div><div id="jquery-lightbox"><div id="lightbox-container-image-box"><div id="lightbox-container-image"><img id="lightbox-image"><div style="" id="lightbox-nav"><a href="#" id="lightbox-nav-btnPrev"></a><a href="#" id="lightbox-nav-btnNext"></a></div><div id="lightbox-loading"><a href="#" id="lightbox-loading-link"><img src="' + defaults.imageLoading + '"></a></div></div></div><div id="lightbox-container-image-data-box"><div id="lightbox-container-image-data"><div id="lightbox-image-details"><span id="lightbox-image-details-caption"></span><span id="lightbox-image-details-currentNumber"></span></div><div id="lightbox-secNav"><a href="#" id="lightbox-secNav-btnClose"><img src="' + defaults.imageBtnClose + '"></a></div></div></div></div>');	
+		$('body').append('<div id="jquery-overlay"></div><div id="jquery-lightbox"><div id="lightbox-container-image-box"><div id="lightbox-container-image"><img id="lightbox-image"><div style="" id="lightbox-nav"><a href="#" id="lightbox-nav-btnPrev"></a><a href="#" id="lightbox-nav-btnNext"></a></div><div id="lightbox-loading"><a href="#" id="lightbox-loading-link"><img src="' + defaults.imageLoading + '"></a></div></div></div><div id="lightbox-container-image-data-box"><div id="lightbox-container-image-data"><div id="lightbox-image-details"><span id="lightbox-image-details-caption"></span><span id="lightbox-image-details-currentNumber"></span></div><div id="lightbox-secNav"><a href="#" id="lightbox-secNav-btnClose"><img src="' + defaults.imageBtnClose + '"></a></div></div></div></div>');
 		// Get page sizes
 		var arrPageSizes = ___getPageSize();
 		// Style overlay and show it
@@ -263,7 +263,7 @@
 		}).show();
 		// Assigning click events in elements to close overlay
 		$('#jquery-overlay,#jquery-lightbox').click(function() {
-			_finish();									
+			_finish();
 		});
 		// Assign the _finish function to lightbox-loading-link and lightbox-secNav-btnClose objects
 		$('#lightbox-loading-link,#lightbox-secNav-btnClose').click(function() {
@@ -288,8 +288,8 @@
 			});
 		});
 	}
-	
-	
+
+
 	/**
 	 * Prepares image exibition; doing a image´s preloader to calculate it´s size
 	 *
@@ -314,7 +314,7 @@
 		};
 		objImagePreloader.src = defaults.imageArray[defaults.activeImage][0];
 	};
-	
+
 	/**
 	 * Perfomance an effect in the image container resizing it
 	 *
@@ -337,13 +337,13 @@
 			if ( $.browser.msie ) {
 				___pause(250);
 			} else {
-				___pause(100);	
+				___pause(100);
 			}
-		} 
+		}
 		$('#lightbox-container-image-data-box').css({ width: intImageWidth });
 		$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ height: intImageHeight + (defaults.containerBorderSize * 2) });
 	};
-	
+
 	/**
 	 * Show the prepared image
 	 *
@@ -356,7 +356,7 @@
 		});
 		_preload_neighbor_images();
 	};
-	
+
 	/**
 	 * Show the image information
 	 *
@@ -365,14 +365,14 @@
 		$('#lightbox-container-image-data-box').slideDown('fast');
 		$('#lightbox-image-details-caption').hide();
 		if ( defaults.imageArray[defaults.activeImage][1] ) {
-			$('#lightbox-image-details-caption').html(defaults.imageArray[defaults.activeImage][1]).show();
+			$('#lightbox-image-details-caption').html(defaults.imageArray[defaults.activeImage][1] + '<br />' + defaults.imageArray[defaults.activeImage][2]).show();
 		}
 		// If we have a image set, display 'Image X of X'
 		if ( defaults.imageArray.length > 1 ) {
 			$('#lightbox-image-details-currentNumber').html(defaults.txtImage + ' ' + ( defaults.activeImage + 1 ) + ' ' + defaults.txtOf + ' ' + defaults.imageArray.length).show();
-		}		
+		}
 	}
-	
+
 	// handles the reloaction of the URL hash variable when the previous/next buttons are clicked within the lightbox UI.
 	function changeThumbnail(activeImg) {
 		location.href = '#'+activeImg;
@@ -382,7 +382,7 @@
 			this.goto(activeImg);
 		}*/
 	}
-	
+
 	/**
 	 * Display the button navigations
 	 *
@@ -392,7 +392,7 @@
 
 		// Instead to define this configuration in CSS file, we define here. And it´s need to IE. Just.
 		$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ 'background' : 'transparent url(' + defaults.imageBlank + ') no-repeat' });
-		
+
 		// Show the prev button, if not the first image in set
 		if ( defaults.activeImage != 0 ) {
 			if ( defaults.fixedNavigation ) {
@@ -418,7 +418,7 @@
 				});
 			}
 		}
-		
+
 		// Show the next button, if not the last image in set
 		if ( defaults.activeImage != ( defaults.imageArray.length -1 ) ) {
 			if ( defaults.fixedNavigation ) {
@@ -447,7 +447,7 @@
 		// Enable keyboard navigation
 		_enable_keyboard_navigation();
 	}
-	
+
 	/**
 	 * Enable a support to keyboard navigation
 	 *
@@ -464,8 +464,8 @@
 	function _disable_keyboard_navigation() {
 		$(document).unbind();
 	}
-	
-	
+
+
 	/**
 	 * Perform the keyboard actions
 	 *
@@ -539,7 +539,7 @@
 	 */
 	function ___getPageSize() {
 		var xScroll, yScroll;
-		if (window.innerHeight && window.scrollMaxY) {	
+		if (window.innerHeight && window.scrollMaxY) {
 			xScroll = window.innerWidth + window.scrollMaxX;
 			yScroll = window.innerHeight + window.scrollMaxY;
 		} else if (document.body.scrollHeight > document.body.offsetHeight){ // all but Explorer Mac
@@ -552,7 +552,7 @@
 		var windowWidth, windowHeight;
 		if (self.innerHeight) {	// all except Explorer
 			if(document.documentElement.clientWidth){
-				windowWidth = document.documentElement.clientWidth; 
+				windowWidth = document.documentElement.clientWidth;
 			} else {
 				windowWidth = self.innerWidth;
 			}
@@ -563,16 +563,16 @@
 		} else if (document.body) { // other Explorers
 			windowWidth = document.body.clientWidth;
 			windowHeight = document.body.clientHeight;
-		}	
+		}
 		// for small pages with total height less then height of the viewport
 		if(yScroll < windowHeight){
 			pageHeight = windowHeight;
-		} else { 
+		} else {
 			pageHeight = yScroll;
 		}
 		// for small pages with total width less then width of the viewport
-		if(xScroll < windowWidth){	
-			pageWidth = xScroll;		
+		if(xScroll < windowWidth){
+			pageWidth = xScroll;
 		} else {
 			pageWidth = windowWidth;
 		}
@@ -595,7 +595,7 @@
 			xScroll = document.documentElement.scrollLeft;
 		} else if (document.body) {// all other Explorers
 			yScroll = document.body.scrollTop;
-			xScroll = document.body.scrollLeft;	
+			xScroll = document.body.scrollLeft;
 		}
 		arrayPageScroll = new Array(xScroll,yScroll);
 		return arrayPageScroll;
@@ -605,14 +605,14 @@
 	  *
 	  */
 	 function ___pause(ms) {
-		var date = new Date(); 
+		var date = new Date();
 		curDate = null;
 		do { var curDate = new Date(); }
 		while ( curDate - date < ms);
 	 };
-	
+
 	// end of lightbox functions
-	
+
 
 	function clickHandler(gallery) {
 		gallery.pause();
@@ -641,12 +641,12 @@
 
 			preloadInit: function() {
 				if (this.settings.preloadAhead == 0) return this;
-				
+
 				this.preloadStartIndex = this.currentIndex;
 				var nextIndex = this.getNextIndex(this.preloadStartIndex);
 				return this.preloadRecursive(this.preloadStartIndex, nextIndex);
 			},
-			
+
 			preloadRelocate: function(index) {
 				// By changing this startIndex, the current preload script will restart
 				this.preloadStartIndex = index;
@@ -676,11 +676,11 @@
 
 				// If already loaded, continue
 				if (imageData.$image)
-					return this.preloadNext(startIndex, currentIndex); 
-				
+					return this.preloadNext(startIndex, currentIndex);
+
 				// Preload the image
 				var image = new Image();
-				
+
 				image.onload = function() {
 					imageData.$image = this;
 					gallery.preloadNext(startIndex, currentIndex);
@@ -691,7 +691,7 @@
 
 				return this;
 			},
-			
+
 			preloadNext: function(startIndex, currentIndex) {
 				var nextIndex = this.getNextIndex(currentIndex);
 				if (nextIndex == startIndex) {
@@ -710,7 +710,7 @@
 					nextIndex = 0;
 				return nextIndex;
 			},
-			
+
 			getPrevIndex: function(index) {
 				var prevIndex = index-1;
 				if (prevIndex < 0)
@@ -721,14 +721,14 @@
 			pause: function() {
 				if (this.interval)
 					this.toggleSlideshow();
-				
+
 				return this;
 			},
 
 			play: function() {
 				if (!this.interval)
 					this.toggleSlideshow();
-				
+
 				return this;
 			},
 
@@ -736,7 +736,7 @@
 				if (this.interval) {
 					clearInterval(this.interval);
 					this.interval = 0;
-					
+
 					if (this.$controlsContainer) {
 						this.$controlsContainer
 							.find('div.ss-controls span').removeClass().addClass('play')
@@ -750,7 +750,7 @@
 					this.interval = setInterval(function() {
 						gallery.ssAdvance();
 					}, this.settings.delay);
-					
+
 					if (this.$controlsContainer) {
 						this.$controlsContainer
 							.find('div.ss-controls span').removeClass().addClass('pause')
@@ -765,7 +765,7 @@
 			ssAdvance: function() {
 				var nextIndex = this.getNextIndex(this.currentIndex);
 				var nextHash = this.data[nextIndex].hash;
-				
+
 				// Seems to be working on both FF and Safari
 				location.href = '#'+nextHash;
 
@@ -784,7 +784,7 @@
 				this.preloadRelocate(index);
 				return this.refresh();
 			},
-			
+
 			refresh: function() {
 				if (this.$imageContainer) {
 					var imageData = this.data[this.currentIndex];
@@ -821,7 +821,7 @@
 							gallery.buildImage(imageData.$image);
 						}
 					});
-					
+
 					if (this.onFadeOut) this.onFadeOut();
 
 					if (!imageData.$image) {
@@ -846,13 +846,13 @@
 
 				return this.syncThumbs();
 			},
-			
+
 			buildImage: function(image) {
 				if (this.$imageContainer) {
 					this.$imageContainer.empty();
 
 					var gallery = this;
-					
+
 					var thisImageIndex = this.currentIndex;
 
 					// Setup image
@@ -865,7 +865,7 @@
 						.click(function() { buildLightBox(image,gallery,thisImageIndex); })
 						.end()
 						.fadeIn('fast');
-					
+
 					if (this.onFadeIn) this.onFadeIn();
 				}
 
@@ -900,7 +900,7 @@
 					// Initialize currentPage to first page
 					if (this.currentPage < 0)
 						this.currentPage = 0;
-				
+
 					var startIndex = this.currentPage*this.settings.numThumbs;
 			        var stopIndex = startIndex+this.settings.numThumbs-1;
 			        if (stopIndex >= this.data.length)
@@ -910,7 +910,7 @@
 
 					// Clear thumbs container
 					this.$thumbsContainer.empty();
-				
+
 					// Rebuild top pager
 					this.$thumbsContainer.append('<div class="top pagination"></div>');
 					if (needsPagination && this.settings.enableTopPager) {
@@ -921,10 +921,10 @@
 					var $ulThumbs = this.$thumbsContainer.append('<ul class="thumbs"></ul>').find('ul.thumbs');
 					for (i=startIndex; i<=stopIndex; i++) {
 						var selected = '';
-					
+
 						if (i==this.currentIndex)
 							selected = ' class="selected"';
-						
+
 						var imageData = this.data[i];
 						$ulThumbs.append('<li'+selected+'><a rel="history" href="#'+imageData.hash+'" title="'+imageData.title+'"><img src="'+imageData.thumb+'" alt="'+imageData.title+'" /></a></li>');
 					}
@@ -945,17 +945,17 @@
 
 			buildPager: function(pager) {
 				var startIndex = this.currentPage*this.settings.numThumbs;
-				
+
 				// Prev Page Link
 				if (this.currentPage > 0) {
 					var prevPage = startIndex - this.settings.numThumbs;
 					pager.append('<a rel="history" href="#'+this.data[prevPage].hash+'" title="'+this.settings.prevPageLinkText+'">'+this.settings.prevPageLinkText+'</a>');
 				}
-				
+
 				// Page Index Links
 				for (i=this.currentPage-3; i<=this.currentPage+3; i++) {
 					var pageNum = i+1;
-					
+
 					if (i == this.currentPage)
 						pager.append('<strong>'+pageNum+'</strong>');
 					else {
@@ -965,20 +965,20 @@
 						}
 					}
 				}
-				
+
 				// Next Page Link
 				var nextPage = startIndex+this.settings.numThumbs;
 				if (nextPage < this.data.length) {
 					pager.append('<a rel="history" href="#'+this.data[nextPage].hash+'" title="'+this.settings.nextPageLinkText+'">'+this.settings.nextPageLinkText+'</a>');
 				}
-				
+
 				return this;
 			}
 		});
 
 		// Now initialize the gallery
 		this.settings = $.extend({}, defaults, settings);
-		
+
 		if (this.settings.galleryKeyboardNav) {
 			_enable_keyboard_navigation();
 		}
@@ -987,7 +987,7 @@
 			clearInterval(this.interval);
 
 		this.interval = 0;
-		
+
 		if (this.settings.imageContainerSel) this.$imageContainer = $(this.settings.imageContainerSel);
 		if (this.settings.thumbsContainerSel) this.$thumbsContainer = $(this.settings.thumbsContainerSel);
 		if (this.settings.titleContainerSel) this.$titleContainer = $(this.settings.titleContainerSel);
@@ -1004,7 +1004,7 @@
 			this.$thumbsContainer = $(thumbsContainerSel);
 			this.buildDataFromThumbs();
 		}
-		
+
 		// Add this gallery to the global galleries array
 		registerGallery(this);
 
@@ -1016,15 +1016,15 @@
 		// Setup controls
 		if (this.settings.controlsContainerSel) {
 			this.$controlsContainer = $(this.settings.controlsContainerSel).empty();
-			
+
 			if (this.settings.renderSSControls) {
 				this.$controlsContainer
 					.append('<div class="ss-controls"><span class="play" title="'+this.settings.playLinkText+'">'+this.settings.playLinkText+'</span></div>')
 					.find('div.ss-controls span')
 					.click(function() { gallery.toggleSlideshow(); });
 			}
-		
-			if (this.settings.renderNavControls) {					
+
+			if (this.settings.renderNavControls) {
 				this.$controlsContainer
 					.append('<div class="nav-controls"><a class="prev" rel="history" title="'+this.settings.prevLinkText+'">'+this.settings.prevLinkText+'</a><a class="next" rel="history" title="Next">'+this.settings.nextLinkText+'</a></div>')
 					.find('a[rel="history"]')
@@ -1043,12 +1043,12 @@
 
 		// Kickoff Image Preloader after 1 second
 		setTimeout(function() { gallery.preloadInit(); }, 1000);
-		
+
 		// autoplay  - run the transitions as soon as the gallery has been loaded if autoPlay is true
 		if(this.settings.autoPlay) {
 			gallery.play();
 		}
-		
+
 		return this;
 	};
 
