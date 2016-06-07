@@ -1,6 +1,6 @@
 /**
  * jQuery gallerific lightBox plugin
- * This jQuery plugin was inspired and based on the jQuery Gallerific plugin by Trent Foley, and the jQuery Lightbox plugin by Leandro Vieira Pinho, 
+ * This jQuery plugin was inspired and based on the jQuery Gallerific plugin by Trent Foley, and the jQuery Lightbox plugin by Leandro Vieira Pinho,
  * which in turn was inspired by the original Lightbox 2 by Lokesh Dhakar (http://www.huddletogether.com/projects/lightbox2/)
  * and adapted to me for use like a plugin from jQuery.
  * @name gallerificLight.css
@@ -14,8 +14,8 @@
  * @license CC Attribution-Noncommercial-ShareAlike (http://creativecommons.org/licenses/by-nc-sa/3.0/)
  * @example Visit http://www.mattgifford.co.uk/ for more informations about this jQuery plugin
  */
- 
- 
+
+
 /* gallerfic styles */
 
 html, body {
@@ -76,7 +76,7 @@ div.content {
 	   This is so that the slideshow content won't display unless javascript is enabled. */
 	display: none;
 	float:right;
-	width:550px; 
+	width:550px;
 }
 div.controls {
 	margin-top: 5px;
@@ -183,10 +183,10 @@ div.pagination a:hover {
 div.pagination strong {
 	background-color: #acf;
 }
- 
- 
+
+
  /* jQuery specific overlay styles */
- 
+
  #jquery-overlay {
 	position: absolute;
 	top: 0;
@@ -238,12 +238,12 @@ div.pagination strong {
 	zoom: 1;
 	display: block;
 }
-#lightbox-nav-btnPrev { 
-	left: 0; 
+#lightbox-nav-btnPrev {
+	left: 0;
 	float: left;
 }
-#lightbox-nav-btnNext { 
-	right: 0; 
+#lightbox-nav-btnNext {
+	right: 0;
 	float: right;
 }
 #lightbox-container-image-data-box {
@@ -256,22 +256,26 @@ div.pagination strong {
 	padding: 0 10px 0;
 }
 #lightbox-container-image-data {
-	padding: 0 10px; 
-	color: #666; 
+	padding: 0 10px;
+	color: #666;
 }
-#lightbox-container-image-data #lightbox-image-details { 
-	width: 70%; 
-	float: left; 
-	text-align: left; 
-}	
-#lightbox-image-details-caption { font-weight: bold; }
+#lightbox-container-image-data #lightbox-image-details {
+	width: 70%;
+	float: left;
+	text-align: left;
+}
+#lightbox-image-details-caption,
+#lightbox-image-details-description {
+  font-weight: bold;
+}
+
 #lightbox-image-details-currentNumber {
-	display: block; 
-	clear: left; 
-	padding-bottom: 1.0em;	
-}			
+	display: block;
+	clear: left;
+	padding-bottom: 1.0em;
+}
 #lightbox-secNav-btnClose {
-	width: 66px; 
+	width: 66px;
 	float: right;
-	padding-bottom: 0.7em;	
+	padding-bottom: 0.7em;
 }

@@ -147,6 +147,8 @@
 		prevPageLinkText:     '&lsaquo; Prev',
 		autoPlay:			  true,
 
+		lb_showImgDescription: false,
+
 		// Configuration related to overlay
 		overlayBgColor: 		'#000',		// (string) Background color to overlay; inform a hexadecimal value like: #RRGGBB. Where RR, GG, and BB are the hexadecimal values for the red, green, and blue values of the color.
 		overlayOpacity:			0.8,		// (integer) Opacity value to overlay; inform: 0.X. Where X are number from 0 to 9
@@ -244,7 +246,7 @@
 	 */
 	function _set_interface() {
 		// Apply the HTML markup into body tag
-		$('body').append('<div id="jquery-overlay"></div><div id="jquery-lightbox"><div id="lightbox-container-image-box"><div id="lightbox-container-image"><img id="lightbox-image"><div style="" id="lightbox-nav"><a href="#" id="lightbox-nav-btnPrev"></a><a href="#" id="lightbox-nav-btnNext"></a></div><div id="lightbox-loading"><a href="#" id="lightbox-loading-link"><img src="' + defaults.imageLoading + '"></a></div></div></div><div id="lightbox-container-image-data-box"><div id="lightbox-container-image-data"><div id="lightbox-image-details"><span id="lightbox-image-details-caption"></span><span id="lightbox-image-details-currentNumber"></span></div><div id="lightbox-secNav"><a href="#" id="lightbox-secNav-btnClose"><img src="' + defaults.imageBtnClose + '"></a></div></div></div></div>');
+		$('body').append('<div id="jquery-overlay"></div><div id="jquery-lightbox"><div id="lightbox-container-image-box"><div id="lightbox-container-image"><img id="lightbox-image"><div style="" id="lightbox-nav"><a href="#" id="lightbox-nav-btnPrev"></a><a href="#" id="lightbox-nav-btnNext"></a></div><div id="lightbox-loading"><a href="#" id="lightbox-loading-link"><img src="' + defaults.imageLoading + '"></a></div></div></div><div id="lightbox-container-image-data-box"><div id="lightbox-container-image-data"><div id="lightbox-image-details"><span id="lightbox-image-details-caption"></span><span id="lightbox-image-details-description"></span><span id="lightbox-image-details-currentNumber"></span></div><div id="lightbox-secNav"><a href="#" id="lightbox-secNav-btnClose"><img src="' + defaults.imageBtnClose + '"></a></div></div></div></div>');
 		// Get page sizes
 		var arrPageSizes = ___getPageSize();
 		// Style overlay and show it
@@ -332,6 +334,7 @@
 		var intDiffW = intCurrentWidth - intWidth;
 		var intDiffH = intCurrentHeight - intHeight;
 		// Perfomance the effect
+
 		$('#lightbox-container-image-box').animate({ width: intWidth, height: intHeight },defaults.containerResizeSpeed,function() { _show_image(); });
 		if ( ( intDiffW == 0 ) && ( intDiffH == 0 ) ) {
 			if ( $.browser.msie ) {
@@ -364,8 +367,12 @@
 	function _show_image_data() {
 		$('#lightbox-container-image-data-box').slideDown('fast');
 		$('#lightbox-image-details-caption').hide();
+		$('#lightbox-image-details-description').hide();
 		if ( defaults.imageArray[defaults.activeImage][1] ) {
-			$('#lightbox-image-details-caption').html(defaults.imageArray[defaults.activeImage][1] + '<br />' + defaults.imageArray[defaults.activeImage][2]).show();
+			$('#lightbox-image-details-caption').html(defaults.imageArray[defaults.activeImage][1]).show();
+		}
+		if ( defaults.imageArray[defaults.activeImage][2] && defaults.lb_showImgDescription ) {
+			$('#lightbox-image-details-description').html('<br />' + defaults.imageArray[defaults.activeImage][2]).show();
 		}
 		// If we have a image set, display 'Image X of X'
 		if ( defaults.imageArray.length > 1 ) {
@@ -1011,6 +1018,9 @@
 		this.numPages = Math.ceil(this.data.length/this.settings.numThumbs);
 		this.currentPage = -1;
 		this.currentIndex = 0;
+
+		defaults.lb_showImgDescription = this.settings.lb_showImgDescription;
+
 		var gallery = this;
 
 		// Setup controls
